@@ -40,11 +40,33 @@ public class MacroController : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
             currentMacro = 0;
+            frameIndex = 0;
+            playing = true;
+            student.playingMacro = true;
+            student.body.velocity = Vector2.zero;
+
+        }
+            
         else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
             currentMacro = 1;
+            frameIndex = 0;
+            playing = true;
+            student.playingMacro = true;
+            student.body.velocity = Vector2.zero;
+        }
+            //currentMacro = 1;
         else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
             currentMacro = 2;
+            frameIndex = 0;
+            playing = true;
+            student.playingMacro = true;
+            student.body.velocity = Vector2.zero;
+        }
+            //currentMacro = 2;
 
         if (Input.GetKeyDown(KeyCode.R) && !recording)
             StartCoroutine(RecordMacro());
@@ -107,8 +129,10 @@ public class MacroController : MonoBehaviour
         else if(currentMacro == 2)
         {
             Camera.main.transform.position = new Vector3(studentInitpos.position.x + 7.2f, studentInitpos.position.y, Camera.main.transform.position.z);
-            Instantiate(student, studentInitpos.position, student.transform.rotation);
+            GameObject st = Instantiate(student, studentInitpos.position, student.transform.rotation).gameObject;
             currentMacro++;
+            FollowPlayer fp = Camera.main.gameObject.AddComponent<FollowPlayer>();
+            fp.lookAtObject = st.transform;
         }
     }
 }

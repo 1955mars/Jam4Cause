@@ -10,7 +10,7 @@ public class Student : MonoBehaviour
     public float groundCheckDistance = 0.1f;
     public LayerMask ground;
 
-    private Rigidbody2D body;
+    public Rigidbody2D body;
     private Transform groundChecker;
     private bool isGrounded;
     private bool jumping = false;
@@ -36,6 +36,9 @@ public class Student : MonoBehaviour
     {
         if (playingMacro)
             Debug.Log("PLAYING");
+
+
+
 
         if (Physics2D.OverlapCircle(groundChecker.position, groundCheckDistance, ground) != null)
             isGrounded = true;
