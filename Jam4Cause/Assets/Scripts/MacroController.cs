@@ -128,6 +128,7 @@ public class MacroController : MonoBehaviour
         }
         else if(currentMacro == 2)
         {
+            Destroy(GameObject.FindObjectOfType<Player>().gameObject);
             Camera.main.transform.position = new Vector3(studentInitpos.position.x + 7.2f, studentInitpos.position.y, Camera.main.transform.position.z);
             GameObject st = Instantiate(student, studentInitpos.position, student.transform.rotation).gameObject;
             currentMacro++;
