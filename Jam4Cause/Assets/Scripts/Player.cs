@@ -36,12 +36,13 @@ public class Player : MonoBehaviour
         if (Physics2D.OverlapCircle(groundChecker.position, groundCheckDistance, ground) != null)
         {
             isGrounded = true;
-            isCollidinginAir = false;
         }
         else
         {
             isGrounded = false;
         }
+
+        //Debug.Log("is grounded = " + isGrounded);
 
         if(isGrounded && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)))
         {
@@ -78,7 +79,12 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        body.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveMultiplier, body.velocity.y);
+        float force;
+        if (jumping)
+            force = moveMultiplier/5;
+        else
+            force = moveMultiplier;
+        body.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * force, body.velocity.y);
         animator.SetFloat("Velocity", Input.GetAxisRaw("Horizontal"));
     }
 
@@ -107,7 +113,7 @@ public class Player : MonoBehaviour
     //        isCollidinginAir = true;
     //        //body.velocity= new Vector2(0, body.velocity.y);
     //    }
-            
+
     //}
     //private void OnTriggerExit2D(Collider2D collision)
     //{
@@ -116,6 +122,6 @@ public class Player : MonoBehaviour
     //        Debug.Log("Jumping and non-colliding");
     //        isCollidinginAir = false;
     //    }
-            
+
     //}
 }
