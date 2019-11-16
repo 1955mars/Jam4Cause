@@ -45,7 +45,6 @@ public class Student : MonoBehaviour
         if (!playingMacro)
         {
             body.velocity = new Vector2(moveMultiplier / 2.0f, body.velocity.y);
-            animator.SetFloat("Velocity", 1);
         }
 
         if (playingMacro && isGrounded && currentFrame.jumpPressed)
@@ -72,23 +71,16 @@ public class Student : MonoBehaviour
         {
             jumping = false;
         }
+
+        animator.SetFloat("Velocity", body.velocity.x);
     }
 
     private void FixedUpdate()
     {
         if (playingMacro && currentFrame.rightPressed)
-        {
             body.velocity = new Vector2(moveMultiplier, body.velocity.y);
-            animator.SetFloat("Velocity", 1);
-        }
-        else if (playingMacro && currentFrame.leftPressed)
-        {
+
+        if (playingMacro && currentFrame.leftPressed)
             body.velocity = new Vector2(-moveMultiplier, body.velocity.y);
-            animator.SetFloat("Velocity", -1);
-        }
-        else if (playingMacro)
-        {
-            animator.SetFloat("Velocity", 0);
-        }
     }
 }
