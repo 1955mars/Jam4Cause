@@ -199,7 +199,7 @@ MonoBehaviour:
   jumpForce: 4.5
   moveMultiplier: 2.5
   maxJumpTime: 0.3
-  groundCheckDistance: 0.2
+  groundCheckDistance: 0.001
   ground:
     serializedVersion: 2
     m_Bits: 256
@@ -454,7 +454,7 @@ GameObject:
   - component: {fileID: 2044344637}
   - component: {fileID: 2044344641}
   - component: {fileID: 2044344640}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
