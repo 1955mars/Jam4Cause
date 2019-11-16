@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
         UnityEngine.UI.Text uiText = GameObject.Find("Text").GetComponent<UnityEngine.UI.Text>();
         uiText.text = "PERFORM THE ACTION YOU WISH TO TEACH";
         selector.transform.position = camera.WorldToScreenPoint(camera.transform.position);
+        Rect viewport = camera.rect;
         Vector3 targetPos = camera.ScreenToWorldPoint(pos);
         Vector3 currentPos = targetPos;
         Vector3 selectorScale = selector.transform.localScale;
@@ -68,8 +69,12 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log(timer);
             camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 5.0f, timer);
+            viewport.y = Mathf.Lerp(viewport.y, 0.0f, timer);
+            viewport.height = Mathf.Lerp(viewport.height, 1.0f, timer);
             currentPos.x = Mathf.Lerp(currentPos.x, targetPos.x, timer);
-            selectorScale.x = Mathf.Lerp(selectorScale.x, 0.19f, timer);
+            selectorScale.x = Mathf.Lerp(selectorScale.x, 0.28f, timer);
+            selectorScale.y = Mathf.Lerp(selectorScale.y, 1.0f, timer);
+            camera.rect = viewport;
             camera.transform.position = currentPos;
             selector.transform.localScale = selectorScale;
 
@@ -90,6 +95,7 @@ public class GameManager : MonoBehaviour
     {
         UnityEngine.UI.Text uiText = GameObject.Find("Text").GetComponent<UnityEngine.UI.Text>();
         uiText.text = "SELECT AN AREA TO TEACH TO YOUR STUDENT";
+        Rect viewport = camera.rect;
         Vector3 currentPos = camera.transform.position;
         Vector3 selectorScale = selector.transform.localScale;
         float timer = 0.0f;
@@ -97,9 +103,13 @@ public class GameManager : MonoBehaviour
         while (timer < 1.0f)
         {
             Debug.Log(camera.orthographicSize);
-            camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 6.0f, timer);
+            camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 5.8f, timer);
+            viewport.y = Mathf.Lerp(viewport.y, 0.2f, timer);
+            viewport.height = Mathf.Lerp(viewport.height, 0.6f, timer);
             currentPos.x = Mathf.Lerp(currentPos.x, 11, timer);
             selectorScale.x = Mathf.Lerp(selectorScale.x, 0.15f, timer);
+            selectorScale.y = Mathf.Lerp(selectorScale.y, 0.6f, timer);
+            camera.rect = viewport;
             camera.transform.position = currentPos;
             selector.transform.localScale = selectorScale;
 
