@@ -49,6 +49,7 @@ public class Player : MonoBehaviour
             jumping = true;
             jumpTimeCounter = maxJumpTime;
             body.velocity = Vector2.up * jumpForce;
+            SoundScript.PlayTune("JumpLong");
         }
 
         if((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && jumping == true)

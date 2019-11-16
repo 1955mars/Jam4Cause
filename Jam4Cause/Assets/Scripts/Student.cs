@@ -55,6 +55,7 @@ public class Student : MonoBehaviour
             jumping = true;
             jumpTimeCounter = maxJumpTime;
             body.velocity = Vector2.up * jumpForce;
+            SoundScript.PlayTune("JumpLong");
         }
 
         if (playingMacro && currentFrame.jumpPressed && jumping == true)
