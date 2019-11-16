@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     private MacroController macroManager;
     public GameObject student;
+    private Transform spawnPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
         studentPlaying = false;
 
         selector = GameObject.Find("Selector");
+        spawnPoint = GameObject.Find("Spawn Point").transform;
         macroManager = FindObjectOfType<MacroController>();
         camera = Camera.main;
     }
@@ -46,11 +48,15 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z) && macroLearning)
         {
-            Debug.Log("Zooming out");
-            macroLearning = false;
-            sectionSelect = true;
             StartCoroutine(ZoomOutSelection());
         }
+    }
+
+    IEnumerator RestartLevel()
+    {
+
+
+        yield return null;
     }
 
     IEnumerator ZoomIn(Vector3 pos)
@@ -88,8 +94,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator ZoomOutSelection()
+    public IEnumerator ZoomOutSelection()
     {
+        Debug.Log("Zooming out");
+        macroLearning = false;
+        sectionSelect = true;
+
         UnityEngine.UI.Text uiText = GameObject.Find("Text").GetComponent<UnityEngine.UI.Text>();
         uiText.text = "SELECT AN AREA TO TEACH TO YOUR STUDENT";
         Rect viewport = camera.rect;

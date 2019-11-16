@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Student : MonoBehaviour
 {
-    public Vector2 jumpVector = new Vector2(0.0f, 20.0f);
-    public float maxJumpTime = 0.5f;
+    public float jumpForce = 5;
+    public float moveMultiplier = 5f;
+    public float maxJumpTime = 0.3f;
     public float groundCheckDistance = 0.1f;
     public LayerMask ground;
 
@@ -13,6 +14,7 @@ public class Student : MonoBehaviour
     private Transform groundChecker;
     private bool isGrounded;
     private bool jumping = false;
+    private float jumpTimeCounter = 0f;
 
     public bool playingMacro = false;
     public FrameData currentFrame;
@@ -35,34 +37,39 @@ public class Student : MonoBehaviour
             isGrounded = true;
         else
             isGrounded = false;
+
+        if (playingMacro && isGrounded && currentFrame.jumpPressed)
+        {
+            jumping = true;
+            jumpTimeCounter = maxJumpTime;
+            body.velocity = Vector2.up * jumpForce;
+        }
+
+        if (playingMacro && currentFrame.jumpPressed && jumping == true)
+        {
+            if (jumpTimeCounter > 0)
+            {
+                body.velocity = Vector2.up * jumpForce;
+                jumpTimeCounter -= Time.deltaTime;
+            }
+            else
+            {
+                jumping = false;
+            }
+        }
+
+        if (!playingMacro || !currentFrame.jumpPressed)
+        {
+            jumping = false;
+        }
     }
 
     private void FixedUpdate()
     {
-        if (currentFrame.jumpPressed && !jumping && isGrounded && playingMacro)
-        {
-            jumping = true;
-            StartCoroutine(Jump());
-        }
-    }
+        if (playingMacro && currentFrame.rightPressed)
+            body.velocity = new Vector2(moveMultiplier, body.velocity.y);
 
-    IEnumerator Jump()
-    {
-        body.velocity = Vector2.zero;
-        float timer = 0.0f;
-
-        Debug.Log(currentFrame.jumpPressed);
-
-        while (currentFrame.jumpPressed && timer < maxJumpTime && playingMacro)
-        //while (timer < maxJumpTime && playingMacro)
-        {
-            float jumpProgress = timer / maxJumpTime;
-            Vector2 currentJumpVector = Vector2.Lerp(jumpVector, Vector2.zero, jumpProgress);
-            body.AddForce(currentJumpVector);
-            timer += Time.deltaTime;
-            yield return null;
-        }
-
-        jumping = false;
+        if (playingMacro && currentFrame.leftPressed)
+            body.velocity = new Vector2(-moveMultiplier, body.velocity.y);
     }
 }

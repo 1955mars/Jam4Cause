@@ -19,11 +19,15 @@ public class Player : MonoBehaviour
     private float jumpTimeCounter = 0f;
     private bool isCollidinginAir = false;
 
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
         groundChecker = transform.GetChild(0);
+
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -74,8 +78,8 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-
-            body.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveMultiplier, body.velocity.y);
+        body.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveMultiplier, body.velocity.y);
+        animator.SetFloat("Velocity", Input.GetAxisRaw("Horizontal"));
     }
 
     //IEnumerator Jump()

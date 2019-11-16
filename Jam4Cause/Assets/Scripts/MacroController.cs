@@ -59,7 +59,7 @@ public class MacroController : MonoBehaviour
             Debug.Log("RECORDING");
             FrameData currentFrame = new FrameData();
 
-            currentFrame.jumpPressed = Input.GetKey(KeyCode.Space);
+            currentFrame.jumpPressed = (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W));
             currentFrame.rightPressed = (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow));
             currentFrame.leftPressed = (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow));
             currentFrame.actionPressed = false;
@@ -81,12 +81,14 @@ public class MacroController : MonoBehaviour
 
     public IEnumerator RecordMacro()
     {
+        //currentMacro += 1;
+
         Vector3 spawnPos = Camera.main.GetComponent<Camera>().transform.position;
         spawnPos.x -= 2.0f;
         spawnPos.y += 2.5f;
         spawnPos.z = -2.3f;
 
-        Instantiate(teacher, spawnPos, Quaternion.identity);
+        //Instantiate(teacher, spawnPos, Quaternion.identity);
 
         yield return new WaitForSeconds(1.0f);
 
@@ -95,5 +97,10 @@ public class MacroController : MonoBehaviour
         yield return new WaitForSeconds(8.0f);
 
         recording = false;
+
+        if (currentMacro < 2)
+        {
+            //StartCoroutine(FindObjectOfType<GameManager>().ZoomOutSelection());
+        }
     }
 }
