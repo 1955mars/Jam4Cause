@@ -19,12 +19,16 @@ public class Student : MonoBehaviour
     public bool playingMacro = false;
     public FrameData currentFrame;
 
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
         groundChecker = transform.GetChild(0);
         FindObjectOfType<MacroController>().student = this;
+
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -37,6 +41,12 @@ public class Student : MonoBehaviour
             isGrounded = true;
         else
             isGrounded = false;
+
+        if (!playingMacro)
+        {
+            body.velocity = new Vector2(moveMultiplier / 2.0f, body.velocity.y);
+            animator.SetFloat("Velocity", 1);
+        }
 
         if (playingMacro && isGrounded && currentFrame.jumpPressed)
         {
@@ -67,9 +77,18 @@ public class Student : MonoBehaviour
     private void FixedUpdate()
     {
         if (playingMacro && currentFrame.rightPressed)
+        {
             body.velocity = new Vector2(moveMultiplier, body.velocity.y);
-
-        if (playingMacro && currentFrame.leftPressed)
+            animator.SetFloat("Velocity", 1);
+        }
+        else if (playingMacro && currentFrame.leftPressed)
+        {
             body.velocity = new Vector2(-moveMultiplier, body.velocity.y);
+            animator.SetFloat("Velocity", -1);
+        }
+        else if (playingMacro)
+        {
+            animator.SetFloat("Velocity", 0);
+        }
     }
 }

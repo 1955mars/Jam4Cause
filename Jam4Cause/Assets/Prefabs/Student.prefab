@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 6361366741456938749}
   - component: {fileID: 6361366741456938748}
   - component: {fileID: 6361366741456938747}
+  - component: {fileID: -3904480178248503583}
   m_Layer: 0
   m_Name: Student
   m_TagString: Untagged
@@ -172,10 +173,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44c5b2fce1fee947b42596d06dbf60c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpVector: {x: 0, y: 20}
+  jumpForce: 5
+  moveMultiplier: 5
   maxJumpTime: 0.5
   groundCheckDistance: 0.1
   ground:
     serializedVersion: 2
     m_Bits: 256
   playingMacro: 0
+--- !u!95 &-3904480178248503583
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6361366741456938746}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bc54deb248cc1de468f27168139617bc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
