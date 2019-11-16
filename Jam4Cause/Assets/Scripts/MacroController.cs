@@ -22,6 +22,8 @@ public class MacroController : MonoBehaviour
     public Student student;
     public GameObject teacher;
 
+    public Transform studentInitpos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -101,6 +103,12 @@ public class MacroController : MonoBehaviour
         if (currentMacro < 2)
         {
             StartCoroutine(FindObjectOfType<GameManager>().ZoomOutSelection());
+        }
+        else if(currentMacro == 2)
+        {
+            Camera.main.transform.position = new Vector3(studentInitpos.position.x + 7.2f, studentInitpos.position.y, Camera.main.transform.position.z);
+            Instantiate(student, studentInitpos.position, student.transform.rotation);
+            currentMacro++;
         }
     }
 }
