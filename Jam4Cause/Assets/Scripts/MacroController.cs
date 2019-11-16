@@ -17,9 +17,10 @@ public class MacroController : MonoBehaviour
     private List<FrameData>[] macros;
 
     [SerializeField]
-    private bool recording;
-    private bool playing;
+    public bool recording;
+    public bool playing;
     public Student student;
+    public GameObject teacher;
 
     // Start is called before the first frame update
     void Start()
@@ -78,10 +79,21 @@ public class MacroController : MonoBehaviour
         }
     }
 
-    IEnumerator RecordMacro()
+    public IEnumerator RecordMacro()
     {
+        Vector3 spawnPos = Camera.main.GetComponent<Camera>().transform.position;
+        spawnPos.x -= 2.0f;
+        spawnPos.y += 2.5f;
+        spawnPos.z = -2.3f;
+
+        Instantiate(teacher, spawnPos, Quaternion.identity);
+
+        yield return new WaitForSeconds(1.0f);
+
         recording = true;
+
         yield return new WaitForSeconds(8.0f);
+
         recording = false;
     }
 }
