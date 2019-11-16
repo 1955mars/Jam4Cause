@@ -27,7 +27,7 @@ public class MacroController : MonoBehaviour
     {
         recording = false;
         playing = false;
-        currentMacro = 0;
+        currentMacro = -1;
         macros = new List<FrameData>[3];
         macros[0] = new List<FrameData>();
         macros[1] = new List<FrameData>();
@@ -81,7 +81,7 @@ public class MacroController : MonoBehaviour
 
     public IEnumerator RecordMacro()
     {
-        //currentMacro += 1;
+        currentMacro += 1;
 
         Vector3 spawnPos = Camera.main.GetComponent<Camera>().transform.position;
         spawnPos.x -= 2.0f;
@@ -100,7 +100,7 @@ public class MacroController : MonoBehaviour
 
         if (currentMacro < 2)
         {
-            //StartCoroutine(FindObjectOfType<GameManager>().ZoomOutSelection());
+            StartCoroutine(FindObjectOfType<GameManager>().ZoomOutSelection());
         }
     }
 }

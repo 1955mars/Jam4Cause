@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
         studentPlaying = false;
 
         selector = GameObject.Find("Selector");
-        spawnPoint = GameObject.Find("Spawn Point").transform;
+        //spawnPoint = GameObject.Find("Spawn Point").transform;
         macroManager = FindObjectOfType<MacroController>();
         camera = Camera.main;
     }
@@ -50,13 +50,6 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(ZoomOutSelection());
         }
-    }
-
-    IEnumerator RestartLevel()
-    {
-
-
-        yield return null;
     }
 
     IEnumerator ZoomIn(Vector3 pos)
