@@ -71,7 +71,7 @@ public class MacroController : MonoBehaviour
             student.currentFrame = macros[currentMacro][frameIndex];
             frameIndex++;
         }
-        else
+        else if (student != null)
         {
             student.playingMacro = false;
             playing = false;
