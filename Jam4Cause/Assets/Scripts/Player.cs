@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
             isGrounded = false;
         }
 
-        Debug.Log("is grounded = " + isGrounded);
+        //Debug.Log("is grounded = " + isGrounded);
 
         if(isGrounded && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)))
         {
