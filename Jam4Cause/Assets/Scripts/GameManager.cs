@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
 
         while (timer < 1.0f)
         {
-            Debug.Log(timer);
+            //Debug.Log(timer);
             camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 5.0f, timer);
             //viewport.y = Mathf.Lerp(viewport.y, 0.0f, timer);
             //viewport.height = Mathf.Lerp(viewport.height, 1.0f, timer);

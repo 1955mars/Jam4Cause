@@ -18,5 +18,6 @@ public class FollowPlayer : MonoBehaviour
     {
         float newX = lookAtObject.transform.position.x;
         transform.position = new Vector3(offsetX + newX, transform.position.y, transform.position.z);
+
     }
 }
