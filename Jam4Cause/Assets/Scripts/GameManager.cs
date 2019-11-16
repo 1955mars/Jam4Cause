@@ -13,7 +13,13 @@ public class GameManager : MonoBehaviour
 
     private MacroController macroManager;
     public GameObject student;
+    public GameObject player;
     private Transform spawnPoint;
+
+    private GameObject playerInstance;
+
+    private float initCameraSize;
+    Rect initViewPort;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +32,8 @@ public class GameManager : MonoBehaviour
         //spawnPoint = GameObject.Find("Spawn Point").transform;
         macroManager = FindObjectOfType<MacroController>();
         camera = Camera.main;
+        initCameraSize = camera.orthographicSize;
+        initViewPort = new Rect(camera.rect);
     }
 
     // Update is called once per frame
@@ -61,14 +69,21 @@ public class GameManager : MonoBehaviour
         Vector3 targetPos = camera.ScreenToWorldPoint(pos);
         Vector3 currentPos = targetPos;
         Vector3 selectorScale = selector.transform.localScale;
+
+        playerInstance = Instantiate(player, new Vector3(currentPos.x-3.5f, currentPos.y+2, 0), player.transform.rotation);
+
         float timer = 0.0f;
 
         while (timer < 1.0f)
         {
             Debug.Log(timer);
             camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 5.0f, timer);
-            viewport.y = Mathf.Lerp(viewport.y, 0.0f, timer);
-            viewport.height = Mathf.Lerp(viewport.height, 1.0f, timer);
+            //viewport.y = Mathf.Lerp(viewport.y, 0.0f, timer);
+            //viewport.height = Mathf.Lerp(viewport.height, 1.0f, timer);
+
+            viewport.y = Mathf.Lerp(initViewPort.y, 0.0f, timer);
+            viewport.height = Mathf.Lerp(initViewPort.height, 1.0f, timer);
+
             currentPos.x = Mathf.Lerp(currentPos.x, targetPos.x, timer);
             selectorScale.x = Mathf.Lerp(selectorScale.x, 0.28f, timer);
             selectorScale.y = Mathf.Lerp(selectorScale.y, 1.0f, timer);
@@ -92,7 +107,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Zooming out");
         macroLearning = false;
         sectionSelect = true;
-
+        Destroy(playerInstance);
         UnityEngine.UI.Text uiText = GameObject.Find("Text").GetComponent<UnityEngine.UI.Text>();
         uiText.text = "SELECT AN AREA TO TEACH TO YOUR STUDENT";
         Rect viewport = camera.rect;
@@ -103,7 +118,7 @@ public class GameManager : MonoBehaviour
         while (timer < 1.0f)
         {
             Debug.Log(camera.orthographicSize);
-            camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 5.8f, timer);
+            camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, initCameraSize, timer);
             viewport.y = Mathf.Lerp(viewport.y, 0.2f, timer);
             viewport.height = Mathf.Lerp(viewport.height, 0.6f, timer);
             currentPos.x = Mathf.Lerp(currentPos.x, 11, timer);
@@ -117,5 +132,6 @@ public class GameManager : MonoBehaviour
 
             yield return null;
         }
-    }      
+    }
+    
 }
