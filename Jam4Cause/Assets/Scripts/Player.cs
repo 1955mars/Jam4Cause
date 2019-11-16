@@ -74,10 +74,8 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isCollidinginAir)
-        {
+
             body.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveMultiplier, body.velocity.y);
-        }
     }
 
     //IEnumerator Jump()
@@ -97,22 +95,23 @@ public class Player : MonoBehaviour
     //    jumping = false;
     //}
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (jumping)
-        {
-            Debug.Log("Jumping and colliding");
-            isCollidinginAir = true;
-        }
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    if (jumping)
+    //    {
+    //        Debug.Log("Jumping and colliding");
+    //        isCollidinginAir = true;
+    //        //body.velocity= new Vector2(0, body.velocity.y);
+    //    }
             
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (jumping && isCollidinginAir)
-        {
-            Debug.Log("Jumping and non-colliding");
-            isCollidinginAir = false;
-        }
+    //}
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (jumping && isCollidinginAir)
+    //    {
+    //        Debug.Log("Jumping and non-colliding");
+    //        isCollidinginAir = false;
+    //    }
             
-    }
+    //}
 }

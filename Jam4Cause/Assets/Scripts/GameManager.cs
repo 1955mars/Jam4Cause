@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     private Camera camera;
 
     private MacroController macroManager;
-    public GameObject teacher;
     public GameObject student;
 
     // Start is called before the first frame update
@@ -83,12 +82,10 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        Vector3 spawnPos = camera.transform.position;
-        spawnPos.x -= 2.0f;
-        spawnPos.y += 2.0f;
-        spawnPos.z = -2.3f;
-
-        //Instantiate(teacher, spawnPos, Quaternion.identity);
+        if (true)
+        {
+            StartCoroutine(macroManager.RecordMacro());
+        }
     }
 
     IEnumerator ZoomOutSelection()
@@ -117,5 +114,5 @@ public class GameManager : MonoBehaviour
 
             yield return null;
         }
-    }
+    }      
 }
