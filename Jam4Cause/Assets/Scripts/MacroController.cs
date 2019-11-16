@@ -38,10 +38,17 @@ public class MacroController : MonoBehaviour
         {
             FrameData currentFrame = new FrameData();
 
-            currentFrame.jumpDown = Input.GetKeyDown(KeyCode.Space);
-            currentFrame.rightPressed = Input.GetKeyDown(KeyCode.Space);
+            currentFrame.jumpPressed = Input.GetKeyDown(KeyCode.Space);
+            currentFrame.rightPressed = (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow));
+            currentFrame.leftPressed = (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow));
+            currentFrame.actionPressed = false;
 
-            macro1.Add(currentFrame);
+            //macro1.Add(currentFrame);
+        }
+
+        if (Input.GetKeyDown(KeyCode.P) && !recording && macro1.Count > 0)
+        {
+
         }
     }
 }
