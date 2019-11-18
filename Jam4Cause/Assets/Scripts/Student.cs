@@ -35,7 +35,7 @@ public class Student : MonoBehaviour
     void Update()
     {
         if (playingMacro)
-            Debug.Log("PLAYING");
+            //Debug.Log("PLAYING");
 
 
 

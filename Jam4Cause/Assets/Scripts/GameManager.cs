@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator ZoomOutSelection()
     {
-        Debug.Log("Zooming out");
+        //Debug.Log("Zooming out");
         macroLearning = false;
         sectionSelect = true;
         Destroy(playerInstance);
@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
 
         while (timer < 1.0f)
         {
-            Debug.Log(camera.orthographicSize);
+            //Debug.Log(camera.orthographicSize);
             camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, initCameraSize, timer);
             viewport.y = Mathf.Lerp(viewport.y, 0.2f, timer);
             viewport.height = Mathf.Lerp(viewport.height, 0.6f, timer);

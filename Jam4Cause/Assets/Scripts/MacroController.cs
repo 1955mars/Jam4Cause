@@ -80,7 +80,7 @@ public class MacroController : MonoBehaviour
 
         if (recording)
         {
-            Debug.Log("RECORDING");
+            //Debug.Log("RECORDING");
             FrameData currentFrame = new FrameData();
 
             currentFrame.jumpPressed = (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W));
