@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -57,6 +58,12 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) && macroLearning)
         {
             StartCoroutine(ZoomOutSelection());
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
+            Debug.Log("Back to menu");
         }
     }
 

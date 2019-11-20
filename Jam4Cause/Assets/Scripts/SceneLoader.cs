@@ -5,9 +5,14 @@ using UnityEngine;
 
 public class SceneLoader : MonoBehaviour
 {
-    public void Scene_loader(int scene_index)
+    // Start is called before the first frame update
+    void Start()
     {
         SceneTransition.currentLevel = 2;
+    }
+
+    public void Scene_loader(int scene_index)
+    {
         SceneManager.LoadScene(scene_index);
     }
 
