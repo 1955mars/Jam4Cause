@@ -34,6 +34,9 @@ public class Student : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UnityEngine.UI.Text uiText = GameObject.Find("Text").GetComponent<UnityEngine.UI.Text>();
+        uiText.text = "PRESS 1, 2, OR 3 TO EXECUTE YOUR TEACHINGS";
+
         if (playingMacro)
             //Debug.Log("PLAYING");
 
